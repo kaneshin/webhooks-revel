@@ -25,7 +25,11 @@ func (c GitHub) Slack() revel.Result {
 	slackData := entities.NewSlackData()
 	if github.PushEvent() {
 	}
-	if github.PullRequestEvent() != nil {
+	if data := github.PullRequestEvent(); data != nil {
+		text := github.GetPullRequestText(data)
+		slackData.InitializeSlackData(config.SlackIncomingChannel, text)
+		slackData.Username = data.PullRequest.User.Login
+		slackData.IconUrl = data.PullRequest.User.AvatarUrl
 	}
 	if data := github.PullRequestReviewCommentEvent(); data != nil {
 		text := github.GetPullRequestReviewCommentText(data)
