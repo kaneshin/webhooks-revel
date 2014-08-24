@@ -1,0 +1,16 @@
+package config
+
+const (
+	SlackTeamIdentifier = ""
+	SlackUsername = ""
+	SlackIconEmoji = ""
+	SlackIconUrl = ""
+
+	SlackAPIToken = ""
+
+	SlackIncomingToken = ""
+	SlackIncomingChannel = ""
+
+	SlackBotToken = ""
+)
+
