@@ -14,6 +14,11 @@ type Slack struct {
 	*WebHooks
 }
 
+func NewSlackInstance() *Slack {
+	slackInstance = &Slack{&WebHooks{}}
+	return slackInstance
+}
+
 func (self *Slack) SetPayload(form url.Values) error {
 	payload := map[string]interface{}{}
 	data := []byte(form["payload"][0])
@@ -94,3 +99,4 @@ func (self *Slack) SendBot(data *entities.SlackData) error {
 	}
 	return nil
 }
+

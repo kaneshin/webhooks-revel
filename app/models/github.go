@@ -13,6 +13,11 @@ type GitHub struct {
 	*WebHooks
 }
 
+func NewGitHubInstance() *GitHub {
+	githubInstance = &GitHub{&WebHooks{}}
+	return githubInstance
+}
+
 func (self *GitHub) SetPayload(form url.Values) error {
 	payload := map[string]interface{}{}
 	data := []byte(form["payload"][0])
