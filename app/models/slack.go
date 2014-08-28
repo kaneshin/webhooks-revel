@@ -1,11 +1,11 @@
 package models
 
 import (
-	"net/url"
-	"net/http"
-	"strings"
 	"bytes"
 	"encoding/json"
+	"net/http"
+	"net/url"
+	"strings"
 	"webhooks/app/config"
 	"webhooks/app/entities"
 )
@@ -61,7 +61,6 @@ func WriteSlackLink(buffer *bytes.Buffer, link string, alias string) {
 	buffer.WriteString(">")
 }
 
-
 // === service
 
 func (self *Slack) setSlackServiceUri(service string, val url.Values) string {
@@ -78,7 +77,7 @@ func (self *Slack) setSlackServiceUri(service string, val url.Values) string {
 func (self *Slack) SendIncoming(data *entities.SlackData) error {
 	val := url.Values{"token": {config.SlackIncomingToken}}
 	uri := self.setSlackServiceUri("incoming-webhook", val)
-	b, err := json.Marshal(data);
+	b, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
@@ -99,4 +98,3 @@ func (self *Slack) SendBot(data *entities.SlackData) error {
 	}
 	return nil
 }
-

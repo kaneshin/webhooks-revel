@@ -15,4 +15,3 @@ type WebHooks struct {
 func (self *WebHooks) GetPayload() interface{} {
 	return self.payload
 }
-

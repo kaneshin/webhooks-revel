@@ -1,11 +1,11 @@
 package models
 
 import (
-	"net/url"
-	"encoding/json"
-	"strings"
 	"bytes"
+	"encoding/json"
+	"net/url"
 	"strconv"
+	"strings"
 	"webhooks/app/entities"
 )
 
@@ -47,7 +47,7 @@ func (self *GitHub) GetIssueCommentText(data *entities.GitHubIssueEventData) str
 	var buffer bytes.Buffer
 	WriteSlackLink(&buffer, data.Comment.HtmlUrl, "The comment")
 	buffer.WriteString(" created on ")
-	WriteSlackLink(&buffer, data.Issue.HtmlUrl, "GitHub#" + strconv.Itoa(data.Issue.Number))
+	WriteSlackLink(&buffer, data.Issue.HtmlUrl, "GitHub#"+strconv.Itoa(data.Issue.Number))
 	buffer.WriteString(" [")
 	WriteSlackLink(&buffer, data.Repository.HtmlUrl, data.Repository.FullName)
 	buffer.WriteString("]\n>")
@@ -96,13 +96,12 @@ func (self *GitHub) PullRequestEvent() *entities.GitHubPullRequestEventData {
 func (self *GitHub) GetPullRequestText(data *entities.GitHubPullRequestEventData) string {
 	var buffer bytes.Buffer
 	buffer.WriteString(" created on ")
-	WriteSlackLink(&buffer, data.PullRequest.HtmlUrl, "GitHub#" + strconv.Itoa(data.PullRequest.Number))
+	WriteSlackLink(&buffer, data.PullRequest.HtmlUrl, "GitHub#"+strconv.Itoa(data.PullRequest.Number))
 	buffer.WriteString(" [")
 	WriteSlackLink(&buffer, data.Repository.HtmlUrl, data.Repository.FullName)
 	buffer.WriteString("]\n>")
 	return buffer.String()
 }
-
 
 /**
  * PullRequestReviewCommentEvent
@@ -123,11 +122,10 @@ func (self *GitHub) GetPullRequestReviewCommentText(data *entities.GitHubPullReq
 	var buffer bytes.Buffer
 	WriteSlackLink(&buffer, data.Comment.HtmlUrl, "The comment")
 	buffer.WriteString(" created on ")
-	WriteSlackLink(&buffer, data.PullRequest.HtmlUrl, "GitHub#" + strconv.Itoa(data.PullRequest.Number))
+	WriteSlackLink(&buffer, data.PullRequest.HtmlUrl, "GitHub#"+strconv.Itoa(data.PullRequest.Number))
 	buffer.WriteString(" [")
 	WriteSlackLink(&buffer, data.Repository.HtmlUrl, data.Repository.FullName)
 	buffer.WriteString("]\n>")
 	buffer.WriteString(data.Comment.Body)
 	return buffer.String()
 }
-
